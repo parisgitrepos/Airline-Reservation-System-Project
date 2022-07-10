@@ -1,14 +1,11 @@
 import DB_Helper_Functions
 
-class Flight:
-    def __init__(self, code='PY123', from_airport='LAX', to_airport='JFK', time='17:00', duration = 4.5,
-                 days_operating=None, seat_map=None, seat_arrangement=None):
 
-        # Setting default value for days_operating like this to comply with PyCharm recommended syntax
-        if days_operating is None:
-            self.days_operating = ['Sunday', 'Monday', 'Friday']
-        else:
-            self.days_operating = days_operating
+class Flight:
+    def __init__(self, code='PY123', from_airport='LAX', to_airport='JFK', time='17:00', duration=4.5, price=100.99,
+                 day_operating='Friday', seat_map=None, seat_arrangement=None):
+
+        # Setting default value for seat_map like this to comply with PyCharm recommended syntax
         # Dict similar to {'1A': {'booked': False}, '1B': {'booked': False}, '1C': {'booked': False},
         #                   '1D': {'booked': False}, '2A': {'booked': False}, ...}
         if seat_map is None:
@@ -41,6 +38,7 @@ class Flight:
         self.to_airport = to_airport
         self.time = time
         self.duration = duration
+        self.day_operating = day_operating
 
     def _seat_available(self, seat_code):
         return True if self.seat_map[seat_code]['booked'] is False else False
@@ -74,14 +72,13 @@ class Flight:
         seat_codes_second_col = []
 
         for row in seat_codes:
-            seat_codes_first_col.append(row[:int(len(row)/2)])
+            seat_codes_first_col.append(row[:int(len(row) / 2)])
 
         for row in seat_codes:
-            seat_codes_second_col.append(row[int(len(row)/2):])
+            seat_codes_second_col.append(row[int(len(row) / 2):])
 
         return {'row1': seat_codes_first_col, 'row2': seat_codes_second_col}
 
     def reset(self):
         for seat in list(self.seat_map.keys()):
             self.cancel_seat(seat)
-
