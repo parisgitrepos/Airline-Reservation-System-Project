@@ -1,0 +1,53 @@
+You can only book up to six days in advance. This means that when you book on, for example, Friday, you can only book
+up to Thursday. This is important because the tickets do not show dates, rather days. However, the system must refresh
+to invalidate the reservation when the day has passed. When you book for a Thursday flight, on Friday the system
+automatically goes back in and voids the reservation (adds "PAST" to day).
+
+Another example - if you had booked on Friday for a Saturday flight, your ticket would automatically be invalidated on
+Sunday.
+
+This is achieved by using MongoDB Triggers, written in "Mongoose" and stored in MongoDB's system. Triggers can be scheduled
+to activate based off a day in the week. Below is the code for each Trigger and associated info.
+
+
+TRIGGER INFO - SET TO EXECUTE EVERY WEDNESDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Tuesday"}, {$set: {"day": "Tuesday (PAST)"}});
+}
+
+TRIGGER INFO - SET TO EXECUTE EVERY THURSDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Wednesday"}, {$set: {"day": "Wednesday (PAST)"}});
+}
+
+TRIGGER INFO - SET TO EXECUTE EVERY FRIDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Thursday"}, {$set: {"day": "Thursday (PAST)"}});
+}
+
+TRIGGER INFO - SET TO EXECUTE EVERY SATURDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Friday"}, {$set: {"day": "Friday (PAST)"}});
+}
+
+TRIGGER INFO - SET TO EXECUTE EVERY SUNDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Saturday"}, {$set: {"day": "Saturday (PAST)"}});
+}
+
+TRIGGER INFO - SET TO EXECUTE EVERY MONDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Sunday"}, {$set: {"day": "Sunday (PAST)"}});
+}
+
+TRIGGER INFO - SET TO EXECUTE EVERY TUESDAY
+exports = function() {
+    const collection = context.services.get("My-Cluster").db("Airline-Reservation-System").collection("reservations");
+    collection.updateMany({"day": "Monday"}, {$set: {"day": "Monday (PAST)"}});
+}

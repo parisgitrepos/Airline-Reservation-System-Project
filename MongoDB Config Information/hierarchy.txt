@@ -1,0 +1,11 @@
+- My-Cluster
+    - Airline-Reservation-System
+        - flights
+        - reservations
+
+
+MongoDB equivalent
+- Cluster
+    - Database
+        - Collection
+        - Collection

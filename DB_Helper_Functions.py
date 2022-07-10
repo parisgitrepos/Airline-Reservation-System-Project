@@ -53,6 +53,7 @@ def db_load_flight(flight_code: str) -> Flight_Class.Flight:
 
 
 def create_db_reservation(name, flight_code, day, seat, fare_paid, date_booked):
+    name = name.upper()
     reservation_number = ''.join((str(random.randint(0, 9)) for digits in range(10)))
     headers = GENERIC_HEADERS
     payload = {
@@ -74,6 +75,7 @@ def create_db_reservation(name, flight_code, day, seat, fare_paid, date_booked):
 
 
 def get_db_reservation(name, reservation_number):
+    name = name.upper()
     headers = GENERIC_HEADERS
     payload = {
         "dataSource": "My-Cluster",

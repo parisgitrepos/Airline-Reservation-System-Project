@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket - Home</title>
+    <link rel="stylesheet" href="/static/show_reservation.css">
+{#    <link rel="stylesheet" href={{ url_for('static', filename='manage_reservation.css') }}>#}
+</head>
+<body class="plane-background">
+
+<div class="main-container">
+    <h1 class="title-text">LastMinuteTicket Airlines</h1>
+    <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+    <br>
+    <br>
+
+
+    <div class="name-container">
+        <h3 style="text-align: center; margin-top: 5px">Name</h3>
+        <p style="text-align: center"> {{ NAME }}</p>
+    </div>
+
+
+    <div class="flight-code-container">
+        <h3 style="text-align: center; margin-top: 5px">Flight Code</h3>
+        <p style="text-align: center"> {{ FLIGHT_CODE }}</p>
+    </div>
+
+    <div class="seat-day-parent">
+        <div class="seat-container">
+            <h3 style="text-align: center; margin-top: 5px">Seat</h3>
+            <p style="text-align: center"> {{ SEAT }}</p>
+        </div>
+
+        <div class="seperator"></div>
+
+        <div class="day-container">
+            <h3 style="text-align: center; margin-top: 5px">Day</h3>
+            <p style="text-align: center"> {{ DAY }}</p>
+        </div>
+    </div>
+
+    <div class="fare-price-container">
+        <h3 style="text-align: center; margin-top: 5px">Fare Paid</h3>
+        <p style="text-align: center"> {{ FARE }}</p>
+    </div>
+
+
+    <div class="reservation-number-container">
+        <h3 style="text-align: center; margin-top: 5px">Reservation Number</h3>
+        <p style="text-align: center"> {{ RESERVATION_NUMBER }}</p>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

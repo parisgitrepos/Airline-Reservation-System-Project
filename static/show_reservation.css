@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,800&display=swap');
+
+html {
+    height: 100%;
+}
+
+p, strong, h3 {
+    font-family: "Times New Roman", serif;
+}
+
+.title-text {
+    font-family: "Noto Sans", "sans-serif";
+    text-align: center;
+}
+
+p.subtitle-text {
+    text-align: center;
+    font-size: 16px;
+}
+
+.main-container {
+    background: lightblue;
+    border-radius: 25px;
+    height: 700px;
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px 10px 10px 10px;
+}
+
+.plane-background {
+    background-image: url("https://images.unsplash.com/photo-1575380591643-b2c92368dc6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2t5bGluZXxlbnwwfHwwfHw%3D&w=1000&q=80");
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.name-container {
+    height: 12%;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-color: red;
+    border-radius: 12px;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.seat-day-parent {
+    height: 12%;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-top: 4%;
+    display: table;
+}
+
+.seperator {
+    width: 5%;
+    display: table-cell;
+}
+
+.seat-container {
+    border-style: solid;
+    border-radius: 12px;
+    border-width: 5px;
+    border-color: red;
+    display: table-cell;
+}
+
+.day-container {
+    border-style: solid;
+    border-radius: 12px;
+    border-width: 5px;
+    border-color: red;
+    display: table-cell;
+}
+
+.flight-code-container, .fare-price-container, .reservation-number-container{
+    height: 12%;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-color: red;
+    border-radius: 12px;
+    border-width: 5px;
+    border-style: solid;
+    margin-top: 4%;
+}
+
