@@ -9,3 +9,6 @@ from Flight_Class import Flight
 # print(flight)
 # print(flight.seat_map)
 
+flight = Flight(seat_map='PERSONAL_JET')
+flight.formatted_seat_map()
+

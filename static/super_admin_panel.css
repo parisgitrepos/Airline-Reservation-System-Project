@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,800&display=swap');
 
-html {
+html, body {
     height: 100%;
 }
 
@@ -21,11 +21,10 @@ p.subtitle-text {
 .main-container {
     background: lightblue;
     border-radius: 25px;
-    height: 350px;
+    height: 90%;
     width: 400px;
     margin: 0 auto;
     position: relative;
-    transform: translateY(50%);
     padding: 10px 10px 10px 10px;
 }
 
@@ -60,10 +59,49 @@ a {
     text-decoration: none;
 }
 
-.lock-image {
-    margin-top: 4%;
-    float: right;
-    height: 5%;
-    width: 5%;
+p.super-admin-panel-label {
+    color: red;
+    text-align: center;
+}
 
+.operation-div {
+    height: 23%;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-color: red;
+    border-radius: 12px;
+    border-width: 5px;
+    border-style: solid;
+    margin-top: 4%;
+}
+
+.first-form-label {
+    white-space: pre;
+    margin-left:25%;
+
+}
+
+.form-label {
+    white-space: pre;
+    margin-left: 25%;
+    display: inline-block;
+    margin-top: 5%;
+}
+
+.table-title {
+    font-size: 20px !important;
+
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+}
+
+.second-operation {
+    height: 40% !important;
 }

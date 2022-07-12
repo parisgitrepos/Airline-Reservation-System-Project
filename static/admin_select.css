@@ -21,7 +21,7 @@ p.subtitle-text {
 .main-container {
     background: lightblue;
     border-radius: 25px;
-    height: 350px;
+    height: 365px;
     width: 400px;
     margin: 0 auto;
     position: relative;
@@ -58,12 +58,4 @@ button:hover {
 
 a {
     text-decoration: none;
-}
-
-.lock-image {
-    margin-top: 4%;
-    float: right;
-    height: 5%;
-    width: 5%;
-
 }

@@ -2,43 +2,20 @@ import DB_Helper_Functions
 
 
 class Flight:
-    def __init__(self, code='PY123', from_airport='LAX', to_airport='JFK', time='17:00', duration=4.5, price=100.99,
-                 day_operating='Friday', seat_map=None, seat_arrangement=None):
+    def __init__(self, code='PY123', day='Friday', time='17:00'):
 
-        # Setting default value for seat_map like this to comply with PyCharm recommended syntax
-        # Dict similar to {'1A': {'booked': False}, '1B': {'booked': False}, '1C': {'booked': False},
-        #                   '1D': {'booked': False}, '2A': {'booked': False}, ...}
-        if seat_map is None:
-            self.seat_map = {}
-            for row in range(30):
-                for col in range(4):
-                    if col == 0:
-                        seat = str(row) + 'A'
-                    elif col == 1:
-                        seat = str(row) + 'B'
-                    elif col == 2:
-                        seat = str(row) + 'C'
-                    elif col == 3:
-                        seat = str(row) + 'D'
-                    else:
-                        seat = 'Error'
+        flight_info = DB_Helper_Functions.db_load_flight(code, day, time)
+        self.code = flight_info['code']
+        self.from_airport = flight_info['from']
+        self.to_airport = flight_info['to']
+        self.time = flight_info['time']
+        self.duration = flight_info['duration']
+        self.day_operating = flight_info['day']
+        self.fare = flight_info['fare']
 
-                    self.seat_map[seat] = {'booked': False}
-        else:
-            self.seat_map = seat_map
-
-        # NOTE - Assume only 2 columns
-        if seat_arrangement is None:
-            self.seat_arrangement = {'seats_per_row': 4, 'seats_per_col': 2}
-        else:
-            self.seat_arrangement = seat_arrangement
-
-        self.code = code
-        self.from_airport = from_airport
-        self.to_airport = to_airport
-        self.time = time
-        self.duration = duration
-        self.day_operating = day_operating
+        self.seat_map_info = flight_info['seat_map']
+        self.seat_map = self.seat_map_info['seat_map']
+        self.seat_arrangement = self.seat_map_info['seat_arrangement']
 
     def _seat_available(self, seat_code):
         return True if self.seat_map[seat_code]['booked'] is False else False
@@ -61,10 +38,9 @@ class Flight:
 
         return available_seats
 
-    def formatted_seat_map(self):
+    def get_seat_map(self):
         seat_codes = list(self.seat_map.keys())
         seats_per_row = self.seat_arrangement['seats_per_row']
-        seats_per_col = self.seat_arrangement['seats_per_col']
 
         seat_codes = zip(*(seat_codes[i:] for i in range(seats_per_row)))
         seat_codes = list(seat_codes)[::seats_per_row]
@@ -77,8 +53,14 @@ class Flight:
         for row in seat_codes:
             seat_codes_second_col.append(row[int(len(row) / 2):])
 
-        return {'row1': seat_codes_first_col, 'row2': seat_codes_second_col}
+        return {'col1': seat_codes_first_col, 'col2': seat_codes_second_col}
+
+    def get_fare(self):
+        return self.fare
 
     def reset(self):
         for seat in list(self.seat_map.keys()):
             self.cancel_seat(seat)
+
+    def db_sync(self):
+        DB_Helper_Functions.update_db_flight(self)

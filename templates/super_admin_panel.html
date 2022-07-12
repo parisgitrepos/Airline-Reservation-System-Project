@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket - Home</title>
+    <link rel="stylesheet" href="/static/super_admin_panel.css">
+</head>
+<body class="plane-background">
+<div class="center">
+    <div class="main-container">
+        <h1 class="title-text">LastMinuteTicket Airlines</h1>
+        <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+        <p class="super-admin-panel-label">Super Admin Panel</p>
+        <br>
+        <br>
+        <div class="operation-div">
+
+            <form method="post" id="seat_map_form">
+                <input type="hidden" name="form" value="seat_map_form">
+            </form>
+            <table style="width: 100%;">
+                <tr class="table-title">
+                    <th>Upload New Seat Map</th>
+                </tr>
+                <tr>
+                    <td height="5px"></td>
+                </tr>
+
+                <tr style="text-align: left">
+                    <td>
+                        <label for="name">
+                            Aircraft
+                            <input type="text" name="aircraft" form="seat_map_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left">
+                    <td>
+                        <label for="rows">
+                            Number of Rows
+                            <input type="number" name="rows" form="seat_map_form" min="1" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="seats_per_col">
+                            Seats Per Row (EVEN, TOTAL)
+                            <input type="number" name="seats_per_row" form="seat_map_form" max="6" min="2" step="2" required>
+                        </label>
+                        <input type="submit" name="Submit" style="margin-left: 10%" form="seat_map_form">
+                    </td>
+                </tr>
+
+                <tr style="text-align: center">
+                    <td><p style="color: red">{{ SEAT_MAP_RESPONSE }}</p></td>
+                </tr>
+
+
+            </table>
+        </div>
+
+
+        <div class="operation-div second-operation">
+
+            <form method="post" id="new_flight_form">
+                <input type="hidden" name="form" value="new_flight_form">
+            </form>
+            <table style="width: 100%;">
+                <tr class="table-title">
+                    <th>Generate New Flight</th>
+                </tr>
+                <tr>
+                    <td height="5px"></td>
+                </tr>
+
+                <tr style="text-align: left">
+                    <td>
+                        <label for="from">
+                            From Airport
+                            <input type="text" name="from" form="new_flight_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="to">
+                            To Airport
+                            <input type="text" name="to" form="new_flight_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="duration">
+                            Duration (hrs)
+                            <input type="number" name="duration" form="new_flight_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="fare">
+                            Fare (USD)
+                            <input type="number" name="fare" form="new_flight_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="code">
+                            Code
+                            <input type="text" name="code" form="new_flight_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="time">
+                            Time
+                            <input type="time" name="time" form="new_flight_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="day">
+                            Day
+                            <select name="day" required form="new_flight_form">
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                            </select>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="seat_map">
+                            Seat Map
+                            <select name="seat_map" form="new_flight_form">
+                                {% for seat_map in SEAT_MAPS %}
+                                    <option value="{{ seat_map }}">{{ seat_map }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" name="Submit" style="margin-left: 10%" form="new_flight_form">
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: center">
+                    <td><p style="color: red">{{ NEW_FLIGHT_RESPONSE }}</p></td>
+                </tr>
+
+
+            </table>
+        </div>
+
+</div>
+
+
+</body>
+</html>

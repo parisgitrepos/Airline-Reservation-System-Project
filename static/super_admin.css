@@ -4,7 +4,7 @@ html {
     height: 100%;
 }
 
-p {
+p, strong {
     font-family: "Times New Roman", serif;
 }
 
@@ -38,19 +38,43 @@ p.subtitle-text {
     background-repeat: no-repeat;
 }
 
-button {
+input {
     background-color: white;
     color: black;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     font-size: 16px;
-    margin: 0 auto;
-    display: block;
+    margin-left: 20%;
+    display: inline-block;
     border-radius: 12px;
     text-decoration: none;
+    font-family: "Times New Roman", sans-serif;
+    vertical-align: top;
+    flex-grow: 0;
 }
 
-button:hover {
+p.super-admin-panel-label {
+    color: red;
+    text-align: center;
+}
+
+input.submit {
+    font-size: 15px;
+    padding: 1px;
+    margin-top: 2.25%;
+    margin-left: 10px;
+    flex-grow: 0;
+    width: 60px;
+    height: 30px;
+}
+
+.password-label {
+    white-space: pre;
+    margin-left: 35%;
+    display: inline-block;
+}
+
+input.submit:hover {
     background-color: royalblue;
     color: white;
     text-decoration: none;
@@ -60,10 +84,8 @@ a {
     text-decoration: none;
 }
 
-.lock-image {
-    margin-top: 4%;
-    float: right;
-    height: 5%;
-    width: 5%;
-
+p.error {
+    color: red;
+    margin-top: 0;
+    margin-left: 20%;
 }

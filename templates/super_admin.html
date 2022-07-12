@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket - Super Admin Panel</title>
+    <link rel="stylesheet" href="/static/super_admin.css">
+</head>
+<body class="plane-background">
+
+<div class="main-container">
+    <h1 class="title-text">LastMinuteTicket Airlines</h1>
+    <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+    <p class="super-admin-panel-label">Super Admin Panel</p>
+    <br>
+    <br>
+    <form method="post">
+        <input type="hidden" value="password" name="form">
+        <label>
+            <strong class="password-label">Password</strong>
+            <input type="text" name="password" required>
+        </label>
+        <input type="submit" class="submit">
+    </form>
+    <p class="error" {% if HIDE_INCORRECT_PASSWORD == True %} hidden {% endif %}>Incorrect!</p>
+</div>
+
+
+
+</body>
+</html>
