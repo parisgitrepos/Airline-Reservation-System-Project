@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket - Booking</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='new_booking_query.css') }}>
+</head>
+<body class="plane-background">
+
+<div class="center">
+    <div class="main-container">
+        <h1 class="title-text">LastMinuteTicket Airlines</h1>
+        <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+        <br>
+        <br>
+        <form method="get" action="/flight_finder">
+            <label>
+                <strong class="first-label">From Airport Code</strong>
+                <input type="text" name="from_airport" maxlength="3" required>
+            </label>
+
+            <label>
+                <strong class="regular-label">To Airport Code</strong><br>
+                <input type="text" name="to_airport" maxlength="3" required>
+            </label>
+
+            <label>
+                <strong class="regular-label">Flight Date</strong><br>
+                <input type="date" name="date" min="{{ DATE_MIN }}" max="{{ DATE_MAX }}" required>
+            </label>
+
+            <input type="submit" class="submit">
+        </form>
+
+        {% if NO_FLIGHTS == True %}
+            <p class="error" >No flights found for the selected filters! Please try again.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+</body>
+</html>

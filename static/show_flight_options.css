@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,800&display=swap');
+
+html {
+    height: 100%;
+}
+
+p {
+    font-family: "Times New Roman", serif;
+}
+
+.title-text {
+    font-family: "Noto Sans", "sans-serif";
+    text-align: center;
+}
+
+p.subtitle-text {
+    text-align: center;
+    font-size: 16px;
+}
+
+.title-container {
+    background: lightblue;
+    border-radius: 25px;
+    height: 125px;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px 10px 10px 10px;
+}
+
+#plane-background {
+    background-image: url("https://images.unsplash.com/photo-1575380591643-b2c92368dc6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2t5bGluZXxlbnwwfHwwfHw%3D&w=1000&q=80");
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+button {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: royalblue;
+    color: white;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#flight-container {
+    background: cadetblue;
+    border-radius: 25px;
+    height: 145px;
+    width: 80%;
+    margin: 5% auto;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+}
+
+#flight-header {
+    font-size: 19px;
+    font-family: "Times New Roman", sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#flight-content-parent {
+    font-family: "Times New Roman", sans-serif;
+    width: 100%;
+    height: calc(100% - 34px);
+
+}
+
+.underline-style-general {
+    font-family: inherit;
+    font-size: 14px;
+    width: 20%;
+    height: 100%;
+    font-weight: normal;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+}
+
+.flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.separator {
+    display: inline-block;
+    height: 100%;
+    width: 5%;
+    vertical-align: top;
+}
+
+#flight-info {
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    width: 15%;
+    text-align: center;
+    font-size: 17px;
+}
+
+#book-button-div {
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    width: 15%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#book-button {
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    margin-left: 20%;
+    display: inline-block;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: "Times New Roman", sans-serif;
+}
+
+input:hover {
+    background-color: royalblue;
+    text-decoration: none;
+}

@@ -55,12 +55,9 @@ class Flight:
 
         return {'col1': seat_codes_first_col, 'col2': seat_codes_second_col}
 
-    def get_fare(self):
-        return self.fare
-
     def reset(self):
         for seat in list(self.seat_map.keys()):
             self.cancel_seat(seat)
 
     def db_sync(self):
-        DB_Helper_Functions.update_db_flight(self)
+        DB_Helper_Functions.db_update_flight(self)

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='show_flight_options.css') }}">
+</head>
+<body id="plane-background">
+
+<div class="title-container">
+    <h1 class="title-text">LastMinuteTicket Airlines</h1>
+    <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+</div>
+
+{% for flight in FLIGHT_OPTIONS_LIST %}
+
+<form action="/book" method="post">
+    <div id="flight-container">
+            <p id="flight-header">{{ flight.code }}</p>
+            <input type="hidden" name="code" value="{{ flight.code }}">
+
+            <div id="flight-content-parent">
+
+                <div class="underline-style-general">
+                    <p style="margin-bottom: 0"><b><u>DEPART</u></b></p>
+                    <p style="margin-top: 0">{{ flight.time }}</p>
+                    <input type="hidden" name="time" value="{{ flight.time }}">
+                    <p style="margin-bottom: 0"><b><u>DURATION</u></b></p>
+                    <p style="margin-top: 0">{{ flight.duration }} hrs</p>
+                </div>
+
+                <div class="underline-style-general">
+                    <p style="margin-bottom: 0"><b><u>DAY</u></b></p>
+                    <p style="margin-top: 0">{{ flight.day }}</p>
+                    <input type="hidden" name="day" value="{{ flight.day }}">
+                    <p style="margin-bottom: 0"><b><u>FARE</u></b></p>
+                    <p style="margin-top: 0">${{ flight.fare }} USD</p>
+                </div>
+
+                <div id="flight-info">
+                    <p>{{ flight.from_airport }}</p>
+                    <p style="margin-top: 35px">{{ flight.to_airport }}</p>
+                </div>
+
+                <div class="underline-style-general">
+                    <p style="margin-bottom: 0"><b><u>AIRLINE</u></b></p>
+                    <p style="margin-top: 0">LMT AIRLINES</p>
+                </div>
+
+                <div class="separator"></div>
+
+                <div id="book-button-div">
+                    <input type="submit" value="Book" id="book-button">
+                </div>
+
+            </div>
+    </div>
+</form>
+
+{% endfor %}
+
+
+
+</body>
+</html>

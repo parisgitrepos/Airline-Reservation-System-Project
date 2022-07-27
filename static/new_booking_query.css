@@ -4,7 +4,7 @@ html, body {
     height: 100%;
 }
 
-p {
+p, strong {
     font-family: "Times New Roman", serif;
 }
 
@@ -21,7 +21,7 @@ p.subtitle-text {
 .main-container {
     background: lightblue;
     border-radius: 25px;
-    height: 90%;
+    height: 445px;
     width: 400px;
     margin: 0 auto;
     position: relative;
@@ -37,19 +37,50 @@ p.subtitle-text {
     background-repeat: no-repeat;
 }
 
-button {
+input {
     background-color: white;
     color: black;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     font-size: 16px;
-    margin: 0 auto;
-    display: block;
+    margin-left: 20%;
+    display: inline-block;
     border-radius: 12px;
     text-decoration: none;
+    font-family: "Times New Roman", sans-serif;
+    vertical-align: top;
+    flex-grow: 0;
+}
+
+input.submit {
+    font-size: 15px;
+    padding: 1px;
+    margin-top: 2.25%;
+    margin-left: 10px;
+    flex-grow: 0;
+    width: 60px;
+    height: 30px;
+}
+
+.first-label {
+    white-space: pre;
+    margin-left:25%;
+}
+
+.regular-label {
+    white-space: pre;
+    margin-left: 25%;
+    display: inline-block;
+    margin-top: 5%;
 }
 
 button:hover {
+    background-color: royalblue;
+    color: white;
+    text-decoration: none;
+}
+
+input.submit:hover {
     background-color: royalblue;
     color: white;
     text-decoration: none;
@@ -59,39 +90,10 @@ a {
     text-decoration: none;
 }
 
-p.super-admin-panel-label {
+p.error {
     color: red;
-    text-align: center;
-}
-
-.operation-div {
-    height: 23%;
-    width: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-color: red;
-    border-radius: 12px;
-    border-width: 5px;
-    border-style: solid;
-    margin-top: 4%;
-}
-
-.first-form-label {
-    white-space: pre;
-    margin-left:25%;
-
-}
-
-.form-label {
-    white-space: pre;
-    margin-left: 25%;
-    display: inline-block;
-    margin-top: 5%;
-}
-
-.table-title {
-    font-size: 20px !important;
-
+    margin-top: 0;
+    margin-left: 20%;
 }
 
 .center {
@@ -99,8 +101,4 @@ p.super-admin-panel-label {
     align-items: center;
     justify-content: center;
     height: 100%;
-}
-
-.second-operation {
-    height: 40% !important;
 }
