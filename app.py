@@ -134,7 +134,7 @@ def flight_finder():
                 flight_objs_attrs.append({'code': flight.code, 'from_airport': flight.from_airport,
                                           'to_airport': flight.to_airport, 'duration': flight.duration,
                                           'time': flight.time, 'day': flight.day_operating, 'fare': flight.fare,
-                                          'sold_out': False if flight.get_available_seats() == [] else True})
+                                          'sold_out': True if flight.get_available_seats() == [] else False})
 
             return render_template('show_flight_options.html', FLIGHT_OPTIONS_LIST=flight_objs_attrs)
 

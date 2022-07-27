@@ -50,7 +50,8 @@
                 <div class="separator"></div>
 
                 <div id="book-button-div">
-                    <input type="submit" value="Book" id="book-button">
+                    <input {% if flight.sold_out == False %} type="submit" value="Book" {% else %} type="button"
+                                                             value="SOLD OUT" {% endif %} id="book-button">
                 </div>
 
             </div>

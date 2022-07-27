@@ -216,4 +216,3 @@ def db_find_flights(from_airport, to_airport, day):
         flight_options.append([flight['code'], flight['day'], flight['time']])
 
     return flight_options
-
