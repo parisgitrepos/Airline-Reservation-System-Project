@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reservation_confirmation.css') }}">
+</head>
+<body id="plane-background">
+
+<div id="main-container">
+    <h1 class="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
+    <p id="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+    <br>
+    <br>
+    <p style="text-align: center">Your reservation is confirmed! You may find your reservation number below.</p>
+    <p style="font-size: 20px; text-align: center;"><b><u>{{ RESERVATION_NUMBER }}</u></b></p>
+</div>
+
+
+
+</body>
+</html>

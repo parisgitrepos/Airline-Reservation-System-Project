@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LastMinuteTicket - Super Admin Panel</title>
+    <title>LastMinuteTicket</title>
     <link rel="stylesheet" href= {{ url_for('static', filename='super_admin_login.css') }}>
 </head>
 <body class="plane-background">
 
 <div class="main-container">
-    <h1 class="title-text">LastMinuteTicket Airlines</h1>
+    <h1 class="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
     <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
     <p class="super-admin-panel-label">Super Admin Panel</p>
     <br>
@@ -17,7 +17,7 @@
         <input type="hidden" value="password" name="form">
         <label>
             <strong class="password-label">Password</strong>
-            <input type="text" name="password" required>
+            <input type="password" name="password" required>
         </label>
         <input type="submit" class="submit">
     </form>

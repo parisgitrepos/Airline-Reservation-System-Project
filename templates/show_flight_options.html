@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LastMinuteTicket - Home</title>
+    <title>LastMinuteTicket</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='show_flight_options.css') }}">
 </head>
 <body id="plane-background">
 
 <div class="title-container">
-    <h1 class="title-text">LastMinuteTicket Airlines</h1>
+    <h1 class="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
     <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
 </div>
 
 {% for flight in FLIGHT_OPTIONS_LIST %}
 
 <form action="/book" method="post">
+<input type="hidden" name="ref" value="flight_finder">
     <div id="flight-container">
             <p id="flight-header">{{ flight.code }}</p>
             <input type="hidden" name="code" value="{{ flight.code }}">
@@ -35,6 +36,7 @@
                     <input type="hidden" name="day" value="{{ flight.day }}">
                     <p style="margin-bottom: 0"><b><u>FARE</u></b></p>
                     <p style="margin-top: 0">${{ flight.fare }} USD</p>
+                    <input type="hidden" name="fare" value="{{ flight.fare }}">
                 </div>
 
                 <div id="flight-info">
@@ -45,6 +47,8 @@
                 <div class="underline-style-general">
                     <p style="margin-bottom: 0"><b><u>AIRLINE</u></b></p>
                     <p style="margin-top: 0">LMT AIRLINES</p>
+                    <p style="margin-bottom: 0"><b><u>AIRCRAFT</u></b></p>
+                    <p style="margin-top: 0">{{ flight.aircraft }}</p>
                 </div>
 
                 <div class="separator"></div>

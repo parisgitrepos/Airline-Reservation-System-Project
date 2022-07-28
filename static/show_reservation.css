@@ -89,3 +89,7 @@ p.subtitle-text {
     margin-top: 4%;
 }
 
+a:visited {
+    text-decoration: none;
+    color: black;
+}

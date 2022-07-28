@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='new_reservation.css') }}>
+</head>
+<body id="plane-background">
+
+<form action="/view_seat_map" method="get" target="_blank" id="seat_map_display"></form>
+
+<div class="center">
+    <div id="main-container">
+        <h1 id="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
+        <p id="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+        <br>
+        <br>
+        <form method="post" action="/book">
+
+            <input type="hidden" name="code" value="{{ CODE }}">
+            <input type="hidden" name="fare" value="{{ FARE }}">
+            <input type="hidden" name="day" value="{{ DAY }}">
+            <input type="hidden" name="time" value="{{ TIME }}">
+            <input type="hidden" name="ref" value="new_reservation">
+
+            <label>
+                <strong id="first-label">First Name</strong>
+                <input type="text" name="first_name" minlength="2" required>
+            </label>
+
+            <label>
+                <strong class="regular-label">Last Name</strong><br>
+                <input type="text" name="last_name" minlength="2" required>
+            </label>
+
+            <label>
+                <strong class="regular-label">Seat</strong><br>
+                <select name="seat" style="border: 2px solid black" required>
+                    {% for seat in AVAILABLE_SEATS %}
+                    <option value="{{ seat }}">{{ seat }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <div style="display: inline-block">
+                <input type="hidden" name="code" value="{{ CODE }}" form="seat_map_display">
+                <input type="hidden" name="day" value="{{ DAY }}" form="seat_map_display">
+                <input type="hidden" name="time" value="{{ TIME }}" form="seat_map_display">
+                <input type="submit" value="View Seat Map" style="background: none; border: none; padding: 0;
+                    text-decoration: underline; cursor: pointer; color: blue" form="seat_map_display">
+            </div>
+
+            <label>
+                <strong class="regular-label">Card Number</strong><br>
+                <input type="text" name="credit_card_number" minlength="16" maxlength="16" required>
+            </label>
+
+            <label>
+                <strong class="regular-label">CVV</strong><br>
+                <input type="text" name="credit_card_cvv" maxlength="3" required>
+            </label>
+
+            <label>
+                <strong class="regular-label">Expiration Date</strong><br>
+                <input type="date" name="credit_card_expiration_date" required>
+            </label>
+
+            <input type="submit" class="submit">
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+</html>

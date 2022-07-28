@@ -57,7 +57,8 @@ def super_admin():
             status_code = DB_Helper_Functions.db_generate_seat_map(aircraft, int(num_rows), int(seats_per_row))
 
             return render_template('super_admin_panel.html',
-                                   SEAT_MAP_RESPONSE='Success!' if status_code == 201 else 'Error!')
+                                   SEAT_MAP_RESPONSE='Success!' if status_code == 201 else 'Error!',
+                                   SEAT_MAPS=DB_Helper_Functions.db_get_available_seat_maps())
         elif request.form.get('form') == 'new_flight_form':
             from_airport = request.form.get('from')
             to_airport = request.form.get('to')
@@ -73,7 +74,8 @@ def super_admin():
                                                                seat_map)
 
             return render_template('super_admin_panel.html',
-                                   NEW_FLIGHT_RESPONSE='Success!' if status_code == 201 else 'Error!')
+                                   NEW_FLIGHT_RESPONSE='Success!' if status_code == 201 else 'Error!',
+                                   SEAT_MAPS=DB_Helper_Functions.db_get_available_seat_maps())
 
 
 @app.route('/book', methods=['GET', 'POST'])
@@ -88,10 +90,33 @@ def book():
         else:
             return render_template('new_booking_query.html', DATE_MIN=date_min, DATE_MAX=date_max, NO_FLIGHTS=False)
     elif request.method == 'POST':
-        code = request.form.get('code')
-        day = request.form.get('day')
-        time = request.form.get('time')
-        return 'WIP'
+        if request.form.get('ref') == 'flight_finder':
+            code = request.form.get('code')
+            day = request.form.get('day')
+            time = request.form.get('time')
+            fare = request.form.get('fare')
+
+            flight = Flight(code, day, time)
+            available_seats = flight.get_available_seats()
+
+            return render_template('new_reservation.html', CODE=code, DAY=day, TIME=time,
+                                   AVAILABLE_SEATS=available_seats, FARE=fare)
+        elif request.form.get('ref') == 'new_reservation':
+            code = request.form.get('code')
+            day = request.form.get('day')
+            time = request.form.get('time')
+            name = request.form.get('first_name') + ' ' + request.form.get('last_name')
+            seat = request.form.get('seat')
+            fare = request.form.get('fare')
+            cc_number = request.form.get('credit_card_number')
+            cc_cvv = request.form.get('credit_card_cvv')
+            cc_expiration = request.form.get('credit_card_expiration_date')
+
+            date_booked = datetime.datetime.now().strftime('%Y-%m-%d')
+
+            reservation_number = DB_Helper_Functions.db_generate_reservation(name, code, day, time, seat, fare,
+                                                                             date_booked)
+            return render_template('reservation_confirmation.html', RESERVATION_NUMBER=reservation_number)
 
 
 @app.route('/flight_finder')
@@ -134,9 +159,27 @@ def flight_finder():
                 flight_objs_attrs.append({'code': flight.code, 'from_airport': flight.from_airport,
                                           'to_airport': flight.to_airport, 'duration': flight.duration,
                                           'time': flight.time, 'day': flight.day_operating, 'fare': flight.fare,
-                                          'sold_out': True if flight.get_available_seats() == [] else False})
+                                          'sold_out': True if flight.get_available_seats() == [] else False,
+                                          'aircraft': flight.seat_map_name})
 
             return render_template('show_flight_options.html', FLIGHT_OPTIONS_LIST=flight_objs_attrs)
+
+
+@app.route("/view_seat_map")
+def view_seat_map():
+    code = request.args.get('code')
+    day = request.args.get('day')
+    time = request.args.get('time')
+
+    flight = Flight(code, day, time)
+    seat_map = flight.get_seat_map()
+
+    formatted_seat_map = []
+
+    for col1_row, col2_row in zip(seat_map['col1'], seat_map['col2']):
+        formatted_seat_map.append(str(col1_row) + '                 ' + str(col2_row))
+
+    return render_template('seat_map.html', SEAT_MAP=formatted_seat_map)
 
 
 app.run()

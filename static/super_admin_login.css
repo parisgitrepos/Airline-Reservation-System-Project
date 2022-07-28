@@ -89,3 +89,8 @@ p.error {
     margin-top: 0;
     margin-left: 20%;
 }
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}

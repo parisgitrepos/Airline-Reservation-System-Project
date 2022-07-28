@@ -145,4 +145,10 @@ a {
 input:hover {
     background-color: royalblue;
     text-decoration: none;
+    color: white !important;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
 }

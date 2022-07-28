@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LastMinuteTicket - Manage Reservation</title>
+    <title>LastMinuteTicket</title>
     <link rel="stylesheet" href={{ url_for('static', filename='show_reservation.css') }}
 </head>
 <body class="plane-background">
 
 <div class="main-container">
-    <h1 class="title-text">LastMinuteTicket Airlines</h1>
+    <h1 class="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
     <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
     <br>
     <br>
@@ -41,7 +41,7 @@
 
     <div class="fare-price-container">
         <h3 style="text-align: center; margin-top: 5px">Fare Paid</h3>
-        <p style="text-align: center"> {{ FARE }}</p>
+        <p style="text-align: center"> ${{ FARE }} USD</p>
     </div>
 
 

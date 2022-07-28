@@ -18,7 +18,7 @@ GENERIC_HEADERS = {'Content-Type': 'application/json', 'Access-Control-Request-H
 
 
 def db_insert_flight(code='PY123', from_airport='LAX', to_airport='JFK', time='17:00', duration=4.5, fare=100.99,
-                     day='Friday', seat_map_name='PERSONAL_JET'):
+                     day='Friday', seat_map_name='PERSONAL JET'):
     seat_map = db_get_seat_map(seat_map_name)
     payload = {
         "dataSource": "My-Cluster",
@@ -30,6 +30,7 @@ def db_insert_flight(code='PY123', from_airport='LAX', to_airport='JFK', time='1
             'to': to_airport,
             'time': time,
             'day': day,
+            'seat_map_name': seat_map_name,
             'seat_map': seat_map,
             'duration': duration,
             'fare': fare,
@@ -55,7 +56,7 @@ def db_load_flight(code: str, day: str, time:str):
     return r.json()['document']
 
 
-def db_generate_reservation(name, flight_code, day, seat, fare_paid, date_booked):
+def db_generate_reservation(name, flight_code, day, time, seat, fare_paid, date_booked):
     name = name.upper()
     reservation_number = ''.join((str(random.randint(0, 9)) for digits in range(10)))
     payload = {
@@ -66,6 +67,7 @@ def db_generate_reservation(name, flight_code, day, seat, fare_paid, date_booked
             'name': name,
             'flight_code': flight_code,
             'day': day,
+            'time': time,
             'seat': seat,
             'fare_paid': fare_paid,
             'date_booked': date_booked,

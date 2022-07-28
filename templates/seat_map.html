@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='seat_map.css') }}>
+</head>
+<body>
+{% for row in SEAT_MAP %}
+<p>{{ row }}</p>
+{% endfor %}
+</body>
+</html>

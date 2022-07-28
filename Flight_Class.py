@@ -13,6 +13,7 @@ class Flight:
         self.day_operating = flight_info['day']
         self.fare = flight_info['fare']
 
+        self.seat_map_name = flight_info['seat_map_name']
         self.seat_map_info = flight_info['seat_map']
         self.seat_map = self.seat_map_info['seat_map']
         self.seat_arrangement = self.seat_map_info['seat_arrangement']

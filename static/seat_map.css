@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,800&display=swap');
+
+html {
+    height: 100%;
+}
+
+p, strong, h3 {
+    font-family: "Times New Roman", serif;
+    white-space: pre;
+}

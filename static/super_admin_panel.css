@@ -21,7 +21,7 @@ p.subtitle-text {
 .main-container {
     background: lightblue;
     border-radius: 25px;
-    height: 90%;
+    height: 700px;
     width: 400px;
     margin: 0 auto;
     position: relative;
@@ -103,4 +103,9 @@ p.super-admin-panel-label {
 
 .second-operation {
     height: 40% !important;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
 }

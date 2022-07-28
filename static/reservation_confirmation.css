@@ -8,7 +8,7 @@ p {
     font-family: "Times New Roman", serif;
 }
 
-.title-text {
+#title-text {
     font-family: "Noto Sans", "sans-serif";
     text-align: center;
 }
@@ -18,7 +18,7 @@ p.subtitle-text {
     font-size: 16px;
 }
 
-.main-container {
+#main-container {
     background: lightblue;
     border-radius: 25px;
     height: 350px;
@@ -29,43 +29,13 @@ p.subtitle-text {
     padding: 10px 10px 10px 10px;
 }
 
-.plane-background {
+#plane-background {
     background-image: url("https://images.unsplash.com/photo-1575380591643-b2c92368dc6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2t5bGluZXxlbnwwfHwwfHw%3D&w=1000&q=80");
     background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -webkit-background-size: cover;
     background-repeat: no-repeat;
-}
-
-button {
-    background-color: white;
-    color: black;
-    padding: 20px;
-    text-align: center;
-    font-size: 16px;
-    margin: 0 auto;
-    display: block;
-    border-radius: 12px;
-    text-decoration: none;
-}
-
-button:hover {
-    background-color: royalblue;
-    color: white;
-    text-decoration: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-.lock-image {
-    margin-top: 4%;
-    float: right;
-    height: 5%;
-    width: 5%;
-
 }
 
 a:visited {
