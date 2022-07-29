@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>LastMinuteTicket</title>
-    <link rel="stylesheet" href= {{ url_for('static', filename='super_admin_login.css') }}>
+    <link rel="stylesheet" href= {{ url_for('static', filename='admin_generic_login.css') }}>
 </head>
 <body class="plane-background">
 
 <div class="main-container">
     <h1 class="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
     <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
-    <p class="super-admin-panel-label">Super Admin Panel</p>
+    <p class="admin-panel-label">{{ ADMIN_TYPE }} Panel</p>
     <br>
     <br>
     <form method="post">

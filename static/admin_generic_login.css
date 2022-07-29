@@ -4,11 +4,11 @@ html {
     height: 100%;
 }
 
-p {
+p, strong {
     font-family: "Times New Roman", serif;
 }
 
-#title-text {
+.title-text {
     font-family: "Noto Sans", "sans-serif";
     text-align: center;
 }
@@ -18,7 +18,7 @@ p.subtitle-text {
     font-size: 16px;
 }
 
-#main-container {
+.main-container {
     background: lightblue;
     border-radius: 25px;
     height: 350px;
@@ -29,7 +29,7 @@ p.subtitle-text {
     padding: 10px 10px 10px 10px;
 }
 
-#plane-background {
+.plane-background {
     background-image: url("https://images.unsplash.com/photo-1575380591643-b2c92368dc6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2t5bGluZXxlbnwwfHwwfHw%3D&w=1000&q=80");
     background-size: cover;
     -moz-background-size: cover;
@@ -38,12 +38,59 @@ p.subtitle-text {
     background-repeat: no-repeat;
 }
 
-a:visited {
-    text-decoration: none;
+input {
+    background-color: white;
     color: black;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    margin-left: 20%;
+    display: inline-block;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: "Times New Roman", sans-serif;
+    vertical-align: top;
+    flex-grow: 0;
+}
+
+p.admin-panel-label {
+    color: red;
+    text-align: center;
+}
+
+input.submit {
+    font-size: 15px;
+    padding: 1px;
+    margin-top: 2.25%;
+    margin-left: 10px;
+    flex-grow: 0;
+    width: 60px;
+    height: 30px;
+}
+
+.password-label {
+    white-space: pre;
+    margin-left: 35%;
+    display: inline-block;
+}
+
+input.submit:hover {
+    background-color: royalblue;
+    color: white;
+    text-decoration: none;
 }
 
 a {
+    text-decoration: none;
+}
+
+p.error {
+    color: red;
+    margin-top: 0;
+    margin-left: 20%;
+}
+
+a:visited {
     text-decoration: none;
     color: black;
 }

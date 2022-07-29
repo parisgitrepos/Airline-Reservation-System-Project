@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LastMinuteTicket</title>
+{#    <link rel="stylesheet" href= {{ url_for('static', filename='admin_panel.css') }}>#}
+    <link rel="stylesheet" href='/static/admin_panel.css'>
+
+</head>
+<body class="plane-background">
+<div class="center">
+    <div class="main-container">
+        <h1 class="title-text"><a href="/">LastMinuteTicket Airlines</a></h1>
+        <p class="subtitle-text">Your one-stop shop to book tickets a maximum of 6 days out!</p>
+        <p class="admin-panel-label">Admin Panel</p>
+        <br>
+        <br>
+        <div class="operation-div">
+
+            <form method="post" id="cancel_reservation_form">
+                <input type="hidden" name="form" value="cancel_reservation_form">
+            </form>
+            <table style="width: 100%;">
+                <tr class="table-title">
+                    <th>Cancel Reservation</th>
+                </tr>
+                <tr>
+                    <td height="5px"></td>
+                </tr>
+
+                <tr style="text-align: left">
+                    <td>
+                        <label for="name">
+                            Name
+                            <input type="text" name="name" form="cancel_reservation_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left">
+                    <td>
+                        <label for="reservation_number">
+                            Reservation #
+                            <input type="number" name="reservation_number" form="cancel_reservation_form" required>
+                        </label>
+                        <input type="submit" name="Submit" style="margin-left: 10%" form="cancel_reservation_form">
+                    </td>
+                </tr>
+
+                <tr style="text-align: center">
+                    <td><p style="color: red">{{ CANCEL_RESERVATION_RESPONSE }}</p></td>
+                </tr>
+
+
+            </table>
+        </div>
+
+
+        <div class="operation-div second-operation">
+
+            <form method="post" id="change_seat_form">
+                <input type="hidden" name="form" value="change_seat_form">
+            </form>
+            <table style="width: 100%;">
+                <tr class="table-title">
+                    <th>Change Seat</th>
+                </tr>
+                <tr>
+                    <td height="5px"></td>
+                </tr>
+
+                <tr style="text-align: left">
+                    <td>
+                        <label for="name">
+                            Name
+                            <input type="text" name="name" form="change_seat_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="reservation_number">
+                            Reservation #
+                            <input type="text" name="reservation_number" form="change_seat_form" required>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: left;">
+                    <td>
+                        <label for="duration">
+                            Requested Seat
+                            <input type="text" name="new_seat" form="change_seat_form" required>
+                            <input type="submit" name="Submit" style="margin-left: 10%" form="change_seat_form">
+                        </label>
+                    </td>
+                </tr>
+
+                <tr style="text-align: center">
+                    <td><p style="color: red">{{ NEW_SEAT_RESPONSE }}</p></td>
+                </tr>
+
+
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

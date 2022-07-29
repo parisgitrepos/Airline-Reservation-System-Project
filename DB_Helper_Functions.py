@@ -2,6 +2,7 @@ import requests
 import json
 import random
 import os
+import Flight_Class
 
 
 ENDPOINT = 'https://data.mongodb-api.com/app/data-kgmzc/endpoint/data/v1'
@@ -218,3 +219,71 @@ def db_find_flights(from_airport, to_airport, day):
         flight_options.append([flight['code'], flight['day'], flight['time']])
 
     return flight_options
+
+
+def db_reservation_exists(name, reservation_number):
+    payload = {
+        "dataSource": "My-Cluster",
+        "database": "Airline-Reservation-System",
+        "collection": "reservations",
+        "filter":
+            {
+                "name": name,
+                "reservation_number": reservation_number
+            }
+    }
+
+    r = requests.post(ENDPOINT + '/action/find', headers=GENERIC_HEADERS, data=json.dumps(payload))
+
+    if len(r.json()['documents']) == 0:
+        return False
+    else:
+        return True
+
+
+def db_cancel_reservation(name, reservation_number):
+    if not db_reservation_exists(name, reservation_number):
+        return 'No reservation found!'
+    else:
+        payload = {
+            "dataSource": "My-Cluster",
+            "database": "Airline-Reservation-System",
+            "collection": "reservations",
+            "filter": {
+                'name': name,
+                'reservation_number': reservation_number
+            },
+            "update": {
+                "$set": {
+                    'seat': 'CANCELLED'
+                    }
+                }
+            }
+
+        requests.post(ENDPOINT + '/action/updateOne', headers=GENERIC_HEADERS, data=json.dumps(payload))
+
+        return 'Success!'
+
+
+def db_reservation_change_seat(name, reservation_number, new_seat):
+    if not db_reservation_exists(name, reservation_number):
+        return 'No reservation found!'
+    else:
+        payload = {
+            "dataSource": "My-Cluster",
+            "database": "Airline-Reservation-System",
+            "collection": "reservations",
+            "filter": {
+                'name': name,
+                'reservation_number': reservation_number
+            },
+            "update": {
+                "$set": {
+                    'seat': new_seat
+                    }
+                }
+            }
+
+        requests.post(ENDPOINT + '/action/updateOne', headers=GENERIC_HEADERS, data=json.dumps(payload))
+
+        return 'Success!'

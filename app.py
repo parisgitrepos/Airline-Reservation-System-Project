@@ -41,14 +41,15 @@ def admin_selector():
 @app.route('/super_admin', methods=['GET', 'POST'])
 def super_admin():
     if request.method == 'GET':
-        return render_template('super_admin_login.html', HIDE_INCORRECT_PASSWORD=True)
+        return render_template('admin_generic_login.html', HIDE_INCORRECT_PASSWORD=True, ADMIN_TYPE='Super Admin')
     elif request.method == 'POST':
         if request.form.get('form') == 'password':
             if str(request.form.get('password')) == 'APTIV':
                 return render_template('super_admin_panel.html',
                                        SEAT_MAPS=DB_Helper_Functions.db_get_available_seat_maps())
             else:
-                return render_template('super_admin_login.html', HIDE_INCORRECT_PASSWORD=False)
+                return render_template('admin_generic_login.html', HIDE_INCORRECT_PASSWORD=False,
+                                       ADMIN_TYPE='Super Admin')
         elif request.form.get('form') == 'seat_map_form':
             aircraft = request.form.get('aircraft')
             num_rows = request.form.get('rows')
@@ -116,6 +117,9 @@ def book():
 
             reservation_number = DB_Helper_Functions.db_generate_reservation(name, code, day, time, seat, fare,
                                                                              date_booked)
+            flight = Flight(code, day, time)
+            flight.reserve_seat(seat, name, reservation_number)
+            flight.db_sync()
             return render_template('reservation_confirmation.html', RESERVATION_NUMBER=reservation_number)
 
 
@@ -180,6 +184,58 @@ def view_seat_map():
         formatted_seat_map.append(str(col1_row) + '                 ' + str(col2_row))
 
     return render_template('seat_map.html', SEAT_MAP=formatted_seat_map)
+
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if request.method == 'GET':
+        return render_template('admin_generic_login.html', HIDE_INCORRECT_PASSWORD=True, ADMIN_TYPE='Admin')
+    elif request.method == 'POST':
+        if request.form.get('form') == 'password':
+            if str(request.form.get('password')) == 'PARIS':
+                return render_template('admin_panel.html')
+            else:
+                return render_template('admin_generic_login.html', HIDE_INCORRECT_PASSWORD=False,
+                                       ADMIN_TYPE='Admin')
+        elif request.form.get('form') == 'cancel_reservation_form':
+            reservation_number = request.form.get('reservation_number')
+            name = request.form.get('name').upper()
+
+            if DB_Helper_Functions.db_reservation_exists(name, reservation_number):
+                reservation_info = DB_Helper_Functions.db_get_reservation(name, reservation_number)
+                seat = reservation_info['document']['seat']
+                day = reservation_info['document']['day']
+                time = reservation_info['document']['time']
+                code = reservation_info['document']['flight_code']
+                flight_obj = Flight(code, day, time)
+                flight_obj.cancel_seat(seat)
+                flight_obj.db_sync()
+                DB_Helper_Functions.db_cancel_reservation(name, reservation_number)
+                return render_template('admin_panel.html', CANCEL_RESERVATION_RESPONSE='Success!')
+            else:
+                return render_template('admin_panel.html', CANCEL_RESERVATION_RESPONSE='No reservation found!')
+        elif request.form.get('form') == 'change_seat_form':
+            reservation_number = request.form.get('reservation_number')
+            name = request.form.get('name').upper()
+
+            if DB_Helper_Functions.db_reservation_exists(name, reservation_number):
+                new_seat = request.form.get('new_seat')
+                reservation_info = DB_Helper_Functions.db_get_reservation(name, reservation_number)
+                current_seat = reservation_info['document']['seat']
+                day = reservation_info['document']['day']
+                time = reservation_info['document']['time']
+                code = reservation_info['document']['flight_code']
+                flight_obj = Flight(code, day, time)
+                if new_seat in flight_obj.get_available_seats():
+                    flight_obj.cancel_seat(current_seat)
+                    flight_obj.reserve_seat(new_seat, name, reservation_number)
+                    flight_obj.db_sync()
+                    DB_Helper_Functions.db_reservation_change_seat(name, reservation_number, new_seat)
+                    return render_template('admin_panel.html', NEW_SEAT_RESPONSE='Success!')
+                else:
+                    return render_template('admin_panel.html', NEW_SEAT_RESPONSE='Seat unavailable!')
+            else:
+                return render_template('admin_panel.html', NEW_SEAT_RESPONSE='Reservation not found!')
 
 
 app.run()
