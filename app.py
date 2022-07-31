@@ -253,8 +253,8 @@ def set_auth_cookie():
         return render_template('set_auth_cookie.html')
     else:
         if request.form.get('password') == 'LMTPARIS48352':
-            return flask.make_response("Cookie Set").set_cookie(key="auth_cookie",
-                                                                value="paris2748592345873920528435093930",
-                                                                httponly=True)
+            response = flask.make_response('Cookie set')
+            response.set_cookie(key="auth_cookie", value="paris2748592345873920528435093930", httponly=True)
+            return response
         else:
             return 'Incorrect'
