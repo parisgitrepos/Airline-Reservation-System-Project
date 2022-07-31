@@ -256,3 +256,5 @@ def set_auth_cookie():
             return flask.make_response("Cookie Set").set_cookie(key="auth_cookie",
                                                                 value="paris2748592345873920528435093930",
                                                                 httponly=True)
+        else:
+            return 'Incorrect'
