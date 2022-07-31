@@ -236,6 +236,3 @@ def admin():
                     return render_template('admin_panel.html', NEW_SEAT_RESPONSE='Seat unavailable!')
             else:
                 return render_template('admin_panel.html', NEW_SEAT_RESPONSE='Reservation not found!')
-
-
-app.run()
