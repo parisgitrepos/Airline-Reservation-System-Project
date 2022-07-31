@@ -5,7 +5,7 @@ from Flight_Class import Flight
 import datetime
 from zoneinfo import ZoneInfo
 
-app = Flask('__main__')
+app = Flask(__name__)
 
 
 @app.route('/')
