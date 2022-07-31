@@ -93,3 +93,7 @@ a:visited {
     text-decoration: none;
     color: black;
 }
+
+a {
+    text-decoration: none;
+}
